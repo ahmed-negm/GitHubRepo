@@ -1,0 +1,12 @@
+﻿@{
+    string culture = new System.Globalization.CultureInfo(Culture).TwoLetterISOLanguageName;
+}
+@if(Request.IsAuthenticated) 
+{
+    <text>Logged as <strong>@User.Identity.Name</strong> 
+    (@Html.ActionLink(@Resources.Shared.LogOff, "LogOff", "Account", new { lang = @culture }, new { }))</text>
+}
+else 
+{
+    @Html.ActionLink(@Resources.Shared.Login, "Login", "Account", new { lang = @culture }, new { })
+}

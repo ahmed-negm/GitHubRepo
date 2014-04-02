@@ -1,0 +1,5 @@
+@{
+    string twoLettersCulture = new System.Globalization.CultureInfo(Culture).TwoLetterISOLanguageName;
+}
+    <li>@Html.ActionLink(@Resources.AppResources.MainMenu_MainPage1, "MainPage", "Recipe", new { lang = @twoLettersCulture }, new { })</li>
+    <li>@Html.ActionLink(@Resources.Shared.About, "About", "Home", new { lang = @twoLettersCulture }, new { })</li>

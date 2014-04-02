@@ -1,0 +1,82 @@
+@model MainPageViewModel
+@{
+	ViewBag.Title = Resources.AppResources.MainPage;
+}
+<h2>@Resources.AppResources.MainPage</h2>
+<div class="row">
+    <div class="grid-commands-container grid-top-buttons col-xs-5">
+        @ToolbarButtons()
+    </div>
+     <div class="form-inline grid-view-search col-xs-7">
+        <div class="form-group pull-right">
+            <input type="text" name="search" class="form-control search-box input-sm" value="" id="MainPageSearch" placeholder="@Resources.Shared.DoSearch" />
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm btn-default search-button" title="@(Resources.Shared.DoSearch)"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="button" class="btn btn-default btn-sm clean-button" title="@(Resources.Shared.Clean)"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<table id="MainPageGrid" class="table table-striped table-bordered" width="100%"></table>
+<div class="grid-commands-container grid-bottom-buttons">
+    @ToolbarButtons()
+</div>
+
+@helper ToolbarButtons()
+{
+    <button class="btn btn-default btn-sm report-button" title="@Resources.Shared.Report"><span class="glyphicon glyphicon-print"></span>@Resources.Shared.Report</button>
+}
+
+@section scripts 
+{
+    <script type="text/javascript">
+        $(function () {
+            var gridId = "MainPageGrid";
+
+            gridUtils.setupGridToolbarButtons({
+                gridId: gridId,
+                toolbarContainerSelector: ".grid-bottom-buttons, .grid-top-buttons",                
+                reportUrl: "@Url.Action("ReportMainPage")"
+            });
+            gridUtils.setupGridSearchBox({
+                gridId: gridId,
+                searchContainerSelector: ".grid-view-search"
+            });
+            gridUtils.setupGridRowButtons({ gridId: gridId });
+
+            $("#"+gridId).dataTable({
+                "aoColumns": [
+					{ mData: "Id", sName: "Id", bVisible: false, bSortable: false },
+                    { mData: "Name", sName: "Name", sTitle: "@Resources.AppResources.MainPageViewModel_Name" },
+                    { mData: "Continent", sName: "Continent", sTitle: "@Resources.AppResources.MainPageViewModel_Continent" },
+							
+                    {
+                        sClass: "row-options",
+                        bSortable: false,
+                        mData: null
+                    }
+                ],
+                "aaSorting": [[1, "asc"]],
+                "sPaginationType": "full_numbers",
+                "oLanguage": datatables_locale,
+                "bProcessing": true,
+                "bFilter": true,
+                "bServerSide": true,
+                "sAjaxSource": "@Url.Action("MainPage")",
+                "sServerMethod": "POST",
+                "sDom": 'rtip<"pull-left"l>',
+                "bStateSave": true,
+                "sCookiePrefix": "radarc",
+                "fnCookieCallback": function (sName, oData, sExpires, sPath) {
+                    return sName + "="+JSON.stringify(oData)+";path=" + sPath;
+                },
+                "fnStateLoaded": function (oSettings) {
+                    var search = oSettings.oPreviousSearch;
+                    if (search) {
+                        $("input.search-box").val(search.sSearch);
+                    }
+                }
+            });
+        });
+    </script>
+}

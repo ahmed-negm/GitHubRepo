@@ -1,0 +1,149 @@
+﻿body {
+    font-family: "Helvetica Neue","Lucida Grande","Segoe UI",Arial,Helvetica,Verdana,sans-serif;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 480px;
+}
+
+.form-horizontal .row  {
+    margin-bottom: 8px;
+}
+
+.form-field-group {
+    
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ffd6d6;
+    background-color: #fff6f6;
+}
+.input-validation-error:focus {
+    border: 1px solid #ffe0e0;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    margin-top: 15px;
+    color: #a93a38;
+}
+
+.validation-summary-errors span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+input.integer-number, input.decimal-number, form .date  {
+    width: 150px;
+    text-align: right;
+}
+
+.boolean-true {
+    display: block;
+    background: transparent url(images/yes.gif) no-repeat scroll left top;
+    width: 16px;
+    height: 16px;
+}
+.boolean-false {
+    display: block;
+    background: transparent url(images/no.gif) no-repeat scroll left top;
+    width: 16px;
+    height: 16px;
+}
+
+.form-commands-container {
+    margin: 0 0 20px 0;
+}
+
+.form-commands-container .glyphicon, .grid-commands-container .glyphicon, .secondary-grid-commands .glyphicon  {
+    margin-right: 5px;
+}
+
+.grid-view-search, .grid-commands-container {
+    margin-bottom: 10px;
+}
+
+.grid-view-search {
+    text-align: right;
+}
+
+.grid-view-search input {
+    width: 150px;
+    display: inline;
+}
+
+.row-options {
+    width: 150px !important;
+}
+
+.secondary-grid-commands {
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    padding: 10px 0px 10px 15px;
+}
+
+.selectedItems {
+    padding: 10px 5px 5px 5px;
+    float: right;
+}
+
+.available-items-search {
+    text-align: right;
+    margin-bottom: 10px;
+}
+.available-items-search input {
+    display: inline;
+    width: 150px;
+}
+.availables-modal .modal-footer button {
+    margin-left: 10px;
+}
+
+.modal-dialog {
+    max-width: 700px;
+}
+
+/* fix MS-Bug. See https://github.com/twbs/bootstrap/issues/7811 */
+input::-ms-clear {display: none;}
+
+
+@media (max-width: 767px) {
+  .navbar {
+      z-index: 1030;
+      width: 100%;
+      position: fixed;
+      top: 0; left: 0;
+      background-color: red;
+  }
+  body { 
+      padding-top: 50px;
+  }
+}

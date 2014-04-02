@@ -1,2 +1,1 @@
-GitHubRepo
-==========
+This App is Generated from Radarc Online
